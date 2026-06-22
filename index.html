@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en" id="html-tag" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Youki | Social Media Growth & Production</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght=300;400;600;700;800&family=Cairo:wght=400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #080b11;
+            transition: font-family 0.2s ease;
+        }
+        .lang-ar {
+            font-family: 'Cairo', sans-serif;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px rgba(255, 255, 255, 0.07) solid;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .glass-card:hover {
+            background: rgba(255, 255, 255, 0.04);
+            border-color: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+        }
+        .text-gradient-purple {
+            background: linear-gradient(135deg, #a855f7 0%, #6366f1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .btn-gradient {
+            background: linear-gradient(135deg, #a855f7 0%, #6366f1 100%);
+            background-size: 200% auto;
+            transition: all 0.4s ease;
+        }
+        .btn-gradient:hover {
+            background-position: right center;
+            box-shadow: 0 10px 25px -5px rgba(168, 85, 247, 0.4);
+            transform: translateY(-1px);
+        }
+        .video-card:hover .video-bg {
+            transform: scale(1.08);
+            opacity: 0.6;
+        }
+        .modal {
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        .modal-content {
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .modal.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+        .modal.hidden .modal-content {
+            transform: scale(0.9);
+        }
+        
+        /* Premium Reveal On Scroll Styles */
+        .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: transform, opacity;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Smooth scale in animation for metrics layout */
+        .scale-reveal {
+            opacity: 0;
+            transform: scale(0.96);
+            transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .scale-reveal.active {
+            opacity: 1;
+            transform: scale(1);
+        }
+    </style>
+</head>
+<body class="text-gray-200 min-h-screen selection:bg-purple-600 selection:text-white overflow-x-hidden">
+
+    <!-- Ambient Background Elements with subtle glowing floats -->
+    <div class="absolute top-0 left-1/3 w-[500px] h-[500px] bg-purple-600/10 rounded-full blur-[140px] -z-10 animate-pulse duration-[8000ms]"></div>
+    <div class="absolute top-[40%] right-1/4 w-[400px] h-[400px] bg-indigo-500/10 rounded-full blur-[140px] -z-10 animate-pulse duration-[6000ms]"></div>
+
+    <!-- Header -->
+    <header class="sticky top-0 z-40 bg-[#080b11]/80 backdrop-blur-md border-b border-white/5 transition-all duration-300">
+        <div class="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
+            <div class="flex items-center gap-3 group">
+                <div class="w-9 h-9 rounded-full bg-[#3a9fed] flex items-center justify-center font-serif font-bold text-xs text-white italic select-none transition-transform duration-500 group-hover:rotate-[360deg]">Y.K</div>
+                <a href="#" class="text-xl font-black tracking-tight text-white">YOUKI<span class="text-purple-500 transition-ping">.</span></a>
+            </div>
+            
+            <nav class="hidden md:flex space-x-8 rtl:space-x-reverse text-xs font-bold uppercase tracking-wider text-gray-400">
+                <a href="#case-studies" id="nav-cases" class="hover:text-white transition-colors relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[2px] after:bg-purple-500 hover:after:w-full after:transition-all">Case Studies</a>
+                <a href="#strategy" id="nav-blueprint" class="hover:text-white transition-colors relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[2px] after:bg-purple-500 hover:after:w-full after:transition-all">The Framework</a>
+                <a href="#services" id="nav-services" class="hover:text-white transition-colors relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[2px] after:bg-purple-500 hover:after:w-full after:transition-all">Management Services</a>
+            </nav>
+
+            <div class="flex items-center gap-4">
+                <button onclick="toggleLanguage()" class="glass-card hover:bg-white/5 text-xs font-bold px-3 py-2 rounded-xl border border-white/10 flex items-center gap-2 transition-all text-purple-400 active:scale-95">
+                    <i class="fas fa-globe"></i> <span id="lang-btn-text">العربية</span>
+                </button>
+                <a href="#contact" id="nav-cta" class="btn-gradient text-white px-5 py-2.5 rounded-xl font-bold text-xs uppercase tracking-wide shadow-lg shadow-purple-500/20">
+                    Scale Your Channel
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-6 py-16 space-y-36">
+
+        <!-- Hero: The Hook Statement -->
+        <section class="max-w-4xl space-y-6 pt-4 reveal active">
+            <span id="hero-tag" class="text-xs font-bold uppercase tracking-widest text-purple-400 glass-card px-3 py-1.5 rounded-full inline-block">Channel Manager & Growth Strategist</span>
+            <h1 id="hero-title" class="text-4xl sm:text-6xl font-extrabold tracking-tight text-white leading-[1.15]">
+                I turn raw videos into <span class="text-gradient-purple">algorithmic leverage</span>.
+            </h1>
+            <p id="hero-desc" class="text-gray-400 text-base sm:text-lg max-w-2xl leading-relaxed">
+                Views aren't luck; they are engineered. As a media manager and retention producer, I design high-retaining hooks, clean pacing structures, and systemic strategies to consistently win over audiences.
+            </p>
+            <div class="flex flex-wrap gap-4 pt-4">
+                <a href="#case-studies" id="hero-btn-primary" class="bg-white text-black hover:bg-gray-200 px-6 py-3.5 rounded-xl font-bold text-sm shadow-md transition-all hover:-translate-y-0.5 active:translate-y-0">
+                    View Case Studies
+                </a>
+                <a href="https://www.youtube.com/@YoukiG" target="_blank" id="hero-btn-secondary" class="glass-card hover:bg-white/5 text-white px-6 py-3.5 rounded-xl font-semibold text-sm flex items-center gap-2">
+                    <i class="fab fa-youtube text-red-500 animate-pulse"></i> Visit @YoukiG • 6.19K Subs
+                </a>
+            </div>
+        </section>
+
+        <!-- Authority Stats Counters -->
+        <section class="grid grid-cols-3 gap-4 sm:gap-6 max-w-4xl scale-reveal">
+            <div class="glass-card p-4 sm:p-6 rounded-2xl border-l-4 rtl:border-l-0 rtl:border-r-4 border-purple-500 hover:shadow-xl hover:shadow-purple-500/5">
+                <div id="stat-views-tag" class="text-gray-500 text-[10px] sm:text-xs font-bold uppercase tracking-wider mb-1">Total Impact</div>
+                <div id="live-views" class="text-xl sm:text-3xl font-black text-white tracking-tight">0</div>
+                <div id="stat-views-desc" class="text-[10px] sm:text-xs text-gray-400 mt-1">Channel Views</div>
+            </div>
+            <div class="glass-card p-4 sm:p-6 rounded-2xl border-l-4 rtl:border-l-0 rtl:border-r-4 border-indigo-500 hover:shadow-xl hover:shadow-indigo-500/5">
+                <div id="stat-subs-tag" class="text-gray-500 text-[10px] sm:text-xs font-bold uppercase tracking-wider mb-1">Audience</div>
+                <div id="live-subs" class="text-xl sm:text-3xl font-black text-white tracking-tight">0</div>
+                <div id="stat-subs-desc" class="text-[10px] sm:text-xs text-gray-400 mt-1">Subscribers</div>
+            </div>
+            <div class="glass-card p-4 sm:p-6 rounded-2xl border-l-4 rtl:border-l-0 rtl:border-r-4 border-emerald-500 hover:shadow-xl hover:shadow-emerald-500/5">
+                <div id="stat-videos-tag" class="text-gray-500 text-[10px] sm:text-xs font-bold uppercase tracking-wider mb-1">High Efficiency</div>
+                <div id="live-videos" class="text-xl sm:text-3xl font-black text-white tracking-tight">0</div>
+                <div id="stat-videos-desc" class="text-[10px] sm:text-xs text-gray-400 mt-1">Curated Uploads</div>
+            </div>
+        </section>
+
+        <!-- Proof / Video Background Metrics Grid -->
+        <section id="case-studies" class="space-y-8 reveal">
+            <div class="space-y-2">
+                <div id="proof-tag" class="text-xs font-bold uppercase tracking-widest text-purple-400">Proof of Concept</div>
+                <h2 id="proof-title" class="text-2xl sm:text-3xl font-extrabold text-white">Verified Production Results</h2>
+                <p id="proof-desc" class="text-gray-400 text-sm max-w-xl">Click on any card to pop up and preview the real retention mechanics and audio design.</p>
+            </div>
+
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Video Card 1 -->
+                <div onclick="openModal('_fGG66HhYXk')" class="video-card glass-card h-52 rounded-2xl relative overflow-hidden group cursor-pointer shadow-2xl hover:scale-[1.02] hover:border-purple-500/30">
+                    <div class="absolute inset-0 w-full h-full pointer-events-none z-0 bg-gray-900">
+                        <iframe class="video-bg w-full h-full object-cover scale-100 opacity-35 transition-all duration-700" 
+                                src="https://www.youtube.com/embed/_fGG66HhYXk?autoplay=1&mute=1&loop=1&playlist=_fGG66HhYXk&controls=0&showinfo=0&rel=0&modestbranding=1&enablejsapi=1" 
+                                frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+                    </div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-black/60 z-10 p-6 flex flex-col justify-between">
+                        <div class="flex justify-between items-start">
+                            <p id="card1-format" class="text-xs font-bold uppercase tracking-widest text-gray-400">Short Format</p>
+                            <span class="card-play-text text-white text-xs bg-white/10 px-2 py-0.5 rounded backdrop-blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300"><i class="fas fa-expand mr-1 text-[10px] rtl:ml-1 rtl:mr-0"></i> Play Video</span>
+                        </div>
+                        <div>
+                            <div class="text-4xl font-black text-white tracking-tight drop-shadow-[0_4px_8px_rgba(0,0,0,0.7)] group-hover:text-purple-300 transition-colors">630,600+</div>
+                            <p id="card1-metric" class="text-xs text-purple-400 font-semibold mt-1 drop-shadow-sm"><i class="fas fa-arrow-trend-up mr-1 rtl:ml-1 rtl:mr-0"></i> Studio Analytics Spike</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Video Card 2 -->
+                <div onclick="openModal('IgDI8nXLT9E')" class="video-card glass-card h-52 rounded-2xl relative overflow-hidden group cursor-pointer shadow-2xl hover:scale-[1.02] hover:border-indigo-500/30">
+                    <div class="absolute inset-0 w-full h-full pointer-events-none z-0 bg-gray-900">
+                        <iframe class="video-bg w-full h-full object-cover scale-100 opacity-35 transition-all duration-700" 
+                                src="https://www.youtube.com/embed/IgDI8nXLT9E?autoplay=1&mute=1&loop=1&playlist=IgDI8nXLT9E&controls=0&showinfo=0&rel=0&modestbranding=1&enablejsapi=1" 
+                                frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+                    </div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-black/60 z-10 p-6 flex flex-col justify-between">
+                        <div class="flex justify-between items-start">
+                            <p id="card2-format" class="text-xs font-bold uppercase tracking-widest text-gray-400">Audience Growth</p>
+                            <span class="card-play-text text-white text-xs bg-white/10 px-2 py-0.5 rounded backdrop-blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300"><i class="fas fa-expand mr-1 text-[10px] rtl:ml-1 rtl:mr-0"></i> Play Video</span>
+                        </div>
+                        <div>
+                            <div class="text-4xl font-black text-white tracking-tight drop-shadow-[0_4px_8px_rgba(0,0,0,0.7)] group-hover:text-indigo-300 transition-colors">358,400+</div>
+                            <p id="card2-metric" class="text-xs text-emerald-400 font-semibold mt-1 drop-shadow-sm"><i class="fas fa-bolt mr-1 rtl:ml-1 rtl:mr-0"></i> Metrics Window Scale</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Static/Future Growth Block -->
+                <div class="glass-card h-52 rounded-2xl border-dashed border-white/20 flex flex-col justify-center items-center text-center p-6 group hover:border-purple-500/40">
+                    <div class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center text-gray-500 mb-3 group-hover:text-purple-400 group-hover:rotate-90 transition-all duration-300">
+                        <i class="fas fa-plus text-sm"></i>
+                    </div>
+                    <p id="card3-title" class="text-sm font-bold text-gray-300">Your Channel Next</p>
+                    <p id="card3-desc" class="text-xs text-gray-500 max-w-[200px] mt-1">Ready to optimize CTR and average view duration scales.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Strategy Section -->
+        <section id="strategy" class="space-y-12 reveal">
+            <div class="max-w-xl space-y-2">
+                <div id="strat-tag" class="text-xs font-bold uppercase tracking-widest text-purple-400">The Blueprint</div>
+                <h2 id="strat-title" class="text-2xl sm:text-3xl font-extrabold text-white">How I Keep Audiences Locked In</h2>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="space-y-3 group">
+                    <div id="strat1-title" class="text-lg font-black text-white flex items-center gap-3">
+                        <span class="text-sm text-purple-500 bg-purple-500/10 px-2.5 py-1 rounded-md transition-colors group-hover:bg-purple-500 group-hover:text-white">01</span> The 3-Second Hook
+                    </div>
+                    <p id="strat1-desc" class="text-gray-400 text-xs leading-relaxed pl-11 rtl:pl-0 rtl:pr-11">
+                        Eliminating fluff instantly. We deploy psychological curiosity gaps to command user focus inside the feed.
+                    </p>
+                </div>
+                <div class="space-y-3 group">
+                    <div id="strat2-title" class="text-lg font-black text-white flex items-center gap-3">
+                        <span class="text-sm text-purple-500 bg-purple-500/10 px-2.5 py-1 rounded-md transition-colors group-hover:bg-purple-500 group-hover:text-white">02</span> Micro-Pacing Systems
+                    </div>
+                    <p id="strat2-desc" class="text-gray-400 text-xs leading-relaxed pl-11 rtl:pl-0 rtl:pr-11">
+                        Shifting camera framing, key sound events, and text layers directly on historical user drop-off points.
+                    </p>
+                </div>
+                <div class="space-y-3 group">
+                    <div id="strat3-title" class="text-lg font-black text-white flex items-center gap-3">
+                        <span class="text-sm text-purple-500 bg-purple-500/10 px-2.5 py-1 rounded-md transition-colors group-hover:bg-purple-500 group-hover:text-white">03</span> Graph Analysis
+                    </div>
+                    <p id="strat3-desc" class="text-gray-400 text-xs leading-relaxed pl-11 rtl:pl-0 rtl:pr-11">
+                        Auditing raw retention timelines inside YouTube Studio to isolate and optimize subsequent project cycles.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Grid -->
+        <section id="services" class="space-y-8 reveal">
+            <div class="text-center max-w-xl mx-auto space-y-2">
+                <div id="services-tag" class="text-xs font-bold uppercase tracking-widest text-purple-400">Operations</div>
+                <h2 id="services-title" class="text-2xl sm:text-3xl font-extrabold text-white">Full-Stack Channels Management</h2>
+            </div>
+
+            <div class="grid sm:grid-cols-2 gap-6">
+                <div class="glass-card p-6 rounded-2xl flex items-start gap-4 group">
+                    <div class="p-3 rounded-xl bg-purple-500/10 text-purple-400 text-lg group-hover:bg-purple-500 group-hover:text-white transition-all"><i class="fas fa-wand-magic-sparkles"></i></div>
+                    <div>
+                        <h3 id="serv1-title" class="font-bold text-white mb-1">Retention Editing</h3>
+                        <p id="serv1-desc" class="text-gray-400 text-xs leading-relaxed">Translating messy recording logs into clean stories built specifically to preserve fast focus spans.</p>
+                    </div>
+                </div>
+                <div class="glass-card p-6 rounded-2xl flex items-start gap-4 group">
+                    <div class="p-3 rounded-xl bg-purple-500/10 text-purple-400 text-lg group-hover:bg-purple-500 group-hover:text-white transition-all"><i class="fas fa-eye"></i></div>
+                    <div>
+                        <h3 id="serv2-title" class="font-bold text-white mb-1">CTR & Thumbnail Strategy</h3>
+                        <p id="serv2-desc" class="text-gray-400 text-xs leading-relaxed">Designing specific visual psychological elements to force target click behaviors over competing impressions.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact/CTA Call to Action Section -->
+        <section id="contact" class="glass-card rounded-3xl p-8 md:p-12 text-center max-w-4xl mx-auto space-y-8 reveal">
+            <div class="space-y-2">
+                <h2 id="cta-title" class="text-3xl font-black text-white">Ready to offload your operations?</h2>
+                <p id="cta-desc" class="text-gray-400 text-xs sm:text-sm max-w-xl mx-auto leading-relaxed">
+                    Let me manage your internal content machine and pipeline frameworks while you stay entirely focused on creation.
+                </p>
+            </div>
+            
+            <div class="grid sm:grid-cols-2 gap-4 max-w-2xl mx-auto text-sm">
+                <!-- Discord Node -->
+                <div class="glass-card bg-white/[0.01] border border-white/5 p-4 rounded-xl flex items-center justify-between text-left rtl:text-right group relative overflow-hidden">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-lg bg-[#5865F2]/10 text-[#5865F2] flex items-center justify-center text-lg group-hover:bg-[#5865F2] group-hover:text-white transition-colors duration-300">
+                            <i class="fab fa-discord"></i>
+                        </div>
+                        <div>
+                            <p id="contact-discord-label" class="text-[10px] text-gray-500 font-bold uppercase tracking-wider">Discord Handle</p>
+                            <p class="text-white font-mono text-xs select-all mt-0.5">yassinezaabar</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Copy Interaction Container -->
+                    <div class="flex items-center gap-2 z-10">
+                        <span id="copied-toast" class="text-[11px] font-bold text-emerald-400 bg-emerald-500/10 px-2 py-1 rounded-md opacity-0 scale-90 pointer-events-none transition-all duration-300">Copied!</span>
+                        <button onclick="copyDiscordHandle()" id="discord-copy-btn" class="text-xs text-gray-400 hover:text-white bg-white/5 hover:bg-white/10 w-8 h-8 rounded-lg flex items-center justify-center transition-all active:scale-90">
+                            <i class="fas fa-copy" id="discord-copy-icon"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Instagram Portal -->
+                <a href="https://www.instagram.com/yasine.zaaber/" target="_blank" class="glass-card bg-white/[0.01] border border-white/5 p-4 rounded-xl flex items-center justify-between text-left rtl:text-right group hover:border-purple-500/30">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-lg bg-gradient-to-tr from-[#f9ce34] via-[#ee2a7b] to-[#6228d7] text-white flex items-center justify-center text-lg transition-transform group-hover:scale-105">
+                            <i class="fab fa-instagram"></i>
+                        </div>
+                        <div>
+                            <p id="contact-instagram-label" class="text-[10px] text-gray-500 font-bold uppercase tracking-wider">Direct Message</p>
+                            <p class="text-white font-semibold text-xs mt-0.5">@yasine.zaaber</p>
+                        </div>
+                    </div>
+                    <span class="text-xs text-purple-400 group-hover:translate-x-1.5 rtl:group-hover:-translate-x-1.5 transition-transform duration-300">
+                        <i class="fas fa-arrow-right"></i>
+                    </span>
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- VIDEO POPUP MODAL CONTAINER -->
+    <div id="videoModal" class="modal hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-lg">
+        <div onclick="closeModal()" class="absolute inset-0 cursor-pointer"></div>
+        <div class="modal-content relative w-full max-w-3xl aspect-video glass-card rounded-2xl p-2 bg-zinc-900/90 shadow-2xl z-10">
+            <button onclick="closeModal()" class="absolute -top-12 right-0 text-white bg-white/10 hover:bg-white/20 w-9 h-9 rounded-full flex items-center justify-center transition-all active:scale-95">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="w-full h-full rounded-xl overflow-hidden">
+                <iframe id="modalPlayer" class="w-full h-full" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="border-t border-white/5 mt-24 bg-black/40 py-8 text-center text-xs text-gray-600">
+        <span id="footer-text">&copy; 2026 YOUKI. All execution systems verified.</span>
+    </footer>
+
+    <!-- INTERACTIVE SCRIPTS -->
+    <script>
+        const modal = document.getElementById('videoModal');
+        const player = document.getElementById('modalPlayer');
+
+        function openModal(videoId) {
+            player.src = `https://www.youtube.com/embed/${videoId}?rel=0&autoplay=1`;
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            modal.classList.add('hidden');
+            player.src = "";
+            document.body.style.overflow = '';
+        }
+
+        // Discord Quick Clipboard Copy Engine
+        function copyDiscordHandle() {
+            navigator.clipboard.writeText('yassinezaabar');
+            
+            const toast = document.getElementById('copied-toast');
+            const icon = document.getElementById('discord-copy-icon');
+            const btn = document.getElementById('discord-copy-btn');
+
+            // Trigger visual feedback states
+            toast.classList.remove('opacity-0', 'scale-90', 'pointer-events-none');
+            toast.classList.add('opacity-100', 'scale-100');
+            icon.className = 'fas fa-check text-emerald-400';
+            btn.classList.add('border', 'border-emerald-500/20', 'bg-emerald-500/5');
+
+            // Revert state smoothly after 2000ms
+            setTimeout(() => {
+                toast.classList.remove('opacity-100', 'scale-100');
+                toast.classList.add('opacity-0', 'scale-90', 'pointer-events-none');
+                icon.className = 'fas fa-copy';
+                btn.classList.remove('border', 'border-emerald-500/20', 'bg-emerald-500/5');
+            }, 2000);
+        }
+
+        // Live Counter Animation Framework
+        function animateCounter(elementId, targetValue, suffix = '', duration = 1800) {
+            const element = document.getElementById(elementId);
+            if (!element) return;
+
+            let startTime = null;
+
+            function step(timestamp) {
+                if (!startTime) startTime = timestamp;
+                const progress = Math.min((timestamp - startTime) / duration, 1);
+                const easeProgress = 1 - Math.pow(1 - progress, 3);
+                const currentValue = Math.floor(easeProgress * targetValue);
+
+                if (targetValue >= 1000000) {
+                    element.textContent = (currentValue / 1000000).toFixed(1) + 'M' + suffix;
+                } else if (targetValue > 100) {
+                    element.textContent = (currentValue / 1000).toFixed(2) + 'K';
+                } else {
+                    element.textContent = currentValue + suffix;
+                }
+
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                } else {
+                    if(targetValue >= 1000000) element.textContent = "2.7M+";
+                    if(targetValue === 6190) element.textContent = "6.19K";
+                    if(targetValue === 26) element.textContent = "26";
+                }
+            }
+
+            window.requestAnimationFrame(step);
+        }
+
+        // Modern Intersection Observer Engine for Scroll Reveals
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    if (entry.target.classList.contains('scale-reveal')) {
+                        animateCounter('live-views', 2700000, '+');
+                        animateCounter('live-subs', 6190);
+                        animateCounter('live-videos', 26);
+                    }
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: "0px 0px -40px 0px"
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.reveal, .scale-reveal').forEach(el => {
+                revealObserver.observe(el);
+            });
+        });
+
+        // Dynamic Header Transform on Scroll
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 20) {
+                header.classList.add('bg-[#080b11]/95', 'shadow-xl', 'backdrop-blur-lg');
+            } else {
+                header.classList.remove('bg-[#080b11]/95', 'shadow-xl', 'backdrop-blur-lg');
+            }
+        });
+
+        // Translation Dictionary Asset Matrix
+        const translations = {
+            en: {
+                langBtn: "العربية",
+                navCases: "Case Studies",
+                navBlueprint: "The Framework",
+                navServices: "Management Services",
+                navCta: "Scale Your Channel",
+                heroTag: "Channel Manager & Growth Strategist",
+                heroTitle: "I turn raw videos into <span class='text-gradient-purple'>algorithmic leverage</span>.",
+                heroDesc: "Views aren't luck; they are engineered. As a media manager and retention producer, I design high-retaining hooks, clean pacing structures, and systemic strategies to consistently win over audiences.",
+                heroBtnPrimary: "View Case Studies",
+                heroBtnSecondary: "<i class='fab fa-youtube text-red-500 animate-pulse'></i> Visit @YoukiG • 6.19K Subs",
+                statViewsTag: "Total Impact",
+                statViewsDesc: "Channel Views",
+                statSubsTag: "Audience",
+                statSubsDesc: "Subscribers",
+                statVideosTag: "High Efficiency",
+                statVideosDesc: "Curated Uploads",
+                proofTag: "Proof of Concept",
+                proofTitle: "Verified Production Results",
+                proofDesc: "Click on any card to pop up and preview the real retention mechanics and audio design.",
+                cardPlayText: "<i class='fas fa-expand mr-1 text-[10px]'></i> Play Video",
+                card1Format: "Short Format",
+                card1Metric: "<i class='fas fa-arrow-trend-up mr-1'></i> Studio Analytics Spike",
+                card2Format: "Audience Growth",
+                card2Metric: "<i class='fas fa-bolt mr-1'></i> Metrics Window Scale",
+                card3Title: "Your Channel Next",
+                card3Desc: "Ready to optimize CTR and average view duration scales.",
+                stratTag: "The Blueprint",
+                stratTitle: "How I Keep Audiences Locked In",
+                strat1Title: "<span class='text-sm text-purple-500 bg-purple-500/10 px-2.5 py-1 rounded-md'>01</span> The 3-Second Hook",
+                strat1Desc: "Eliminating fluff instantly. We deploy psychological curiosity gaps to command user focus inside the feed.",
+                strat2Title: "<span class='text-sm text-purple-500 bg-purple-500/10 px-2.5 py-1 rounded-md'>02</span> Micro-Pacing Systems",
+                strat2Desc: "Shifting camera framing, key sound events, and text layers directly on historical user drop-off points.",
+                strat3Title: "<span class='text-sm text-purple-500 bg-purple-500/10 px-2.5 py-1 rounded-md'>03</span> Graph Analysis",
+                strat3Desc: "Auditing raw retention timelines inside YouTube Studio to isolate and optimize subsequent project cycles.",
+                servicesTag: "Operations",
+                servicesTitle: "Full-Stack Channels Management",
+                serv1Title: "Retention Editing",
+                serv1Desc: "Translating messy recording logs into clean stories built specifically to preserve fast focus spans.",
+                serv2Title: "CTR & Thumbnail Strategy",
+                serv2Desc: "Designing specific visual psychological elements to force target click behaviors over competing impressions.",
+                ctaTitle: "Ready to offload your operations?",
+                ctaDesc: "Let me manage your internal content machine and pipeline frameworks while you stay entirely focused on creation.",
+                contactDiscordLabel: "Discord Handle",
+                contactInstagramLabel: "Direct Message",
+                copiedText: "Copied!",
+                footerText: "&copy; 2026 YOUKIG. All execution systems verified."
+            },
+            ar: {
+                langBtn: "English",
+                navCases: "المشاريع السابقة",
+                navBlueprint: "إستراتيجية النمو",
+                navServices: "خدمات إدارة الأعمال",
+                navCta: "طور قناتك الآن",
+                heroTag: "إدارة قنوات وإستراتيجيات نمو المحتوى",
+                heroTitle: "أقوم بتحويل الفيديوهات العادية إلى <span class='text-gradient-purple'>قوة ضاربة في الخوارزميات</span>.",
+                heroDesc: "المشاهدات ليست ضربة حظ، بل صناعة هندسية. كمدير أعمال ومنتج لآليات الاحتفاظ بالجمهور، أقوم بتصميم خطافات جذب بصرية فريدة وهياكل مونتاج متناسقة تضمن بقاء المشاهد لأطول فترة ممكنة.",
+                heroBtnPrimary: "تصفح أعمالي الموثقة",
+                heroBtnSecondary: "<i class='fab fa-youtube text-red-500 ml-2 animate-pulse'></i> زر قناتنا @YoukiG • 6.19K مشترك",
+                statViewsTag: "إجمالي التأثير",
+                statViewsDesc: "مشاهدة على القناة",
+                statSubsTag: "الجمهور الحالي",
+                statSubsDesc: "مشترك حقيقي",
+                statVideosTag: "كفاءة إنتاجية",
+                statVideosDesc: "فيديو منشور فقط",
+                proofTag: "إثبات الكفاءة عبر الأرقام",
+                proofTitle: "نتائج موثقة من إحصاءات يوتيوب استوديو",
+                proofDesc: "اضغط على أي بطاقة لعرض تفاصيل المقطع ومعاينة آليات المونتاج والاحتفاظ بالمشاهد.",
+                cardPlayText: "<i class='fas fa-expand ml-1 text-[10px]'></i> تشغيل الفيديو",
+                card1Format: "مقاطع قصيرة (Shorts)",
+                card1Metric: "<i class='fas fa-arrow-trend-up ml-1'></i> قفزة خوارزمية حادة",
+                card2Format: "توسيع نطاق الجمهور",
+                card2Metric: "<i class='fas fa-bolt ml-1'></i> نمو متسارع للمؤشرات",
+                card3Title: "قناتك القادمة هنا",
+                card3Desc: "مستعدون لتحسين معدلات النقر (CTR) ومتوسط مدة المشاهدة بشكل فوري.",
+                stratTag: "خطة العمل المعتمدة",
+                stratTitle: "كيف نضمن إبقاء المشاهد مقيداً بـ المقطع؟",
+                strat1Title: "<span class='text-sm text-purple-500 bg-purple-500/10 px-2.5 py-1 rounded-md'>01</span> خطاف أول 3 ثوانٍ",
+                strat1Desc: "إزالة أي مقدمات مملة فوراً، ونعتمد فجوات الفضول النفسي لفرض انتباه المستخدم الكامل داخل الخلاصة.",
+                strat2Title: "<span class='text-sm text-purple-500 bg-purple-500/10 px-2.5 py-1 rounded-md'>02</span> أنظمة ضبط سرعة الإيقاع",
+                strat2Desc: "تغيير زوايا الكاميرا، المؤثرات الصوتية، والنصوص مباشرة عند نقاط هبوط المشاهدة التاريخية.",
+                strat3Title: "<span class='text-sm text-purple-500 bg-purple-500/10 px-2.5 py-1 rounded-md'>03</span> تحليل رسوم الاحتفاظ البيانية",
+                strat3Desc: "مراجعة خطوط الاحتفاظ الزمنية داخل استوديو يوتيوب لعزل الأخطاء وتطوير خطة المشروع التالي بناءً عليها.",
+                servicesTag: "إدارة العمليات",
+                servicesTitle: "إدارة متكاملة وشاملة للقنوات",
+                serv1Title: "صناعة وهندسة المحتوى (Retention Editing)",
+                serv1Desc: "تحويل ملفات التسجيل العشوائية الضخمة إلى قصص جذابة ومصممة خصيصاً لتناسب فترات الانتباه السريعة للجمهور.",
+                serv2Title: "إستراتيجيات الصور المصغرة والـ CTR",
+                serv2Desc: "تصميم محفزات بصرية مدروسة بعناية لرفع نسب النقر مقارنة بالمنافسين في نفس المجال.",
+                ctaTitle: "هل أنت مستعد لتسليم إدارة عملياتك الإنتاجية؟",
+                ctaDesc: "اترك لي مهمة إدارة مصنع المحتوى الداخلي الخاص بك وجدولة الخطط بينما تتفرغ أنت للإبداع والصناعة فقط.",
+                contactDiscordLabel: "حساب ديسكورد",
+                contactInstagramLabel: "رسالة مباشرة",
+                copiedText: "تم النسخ!",
+                footerText: "&copy; 2026 YOUKIG. جميع الأنظمة والعمليات الإدارية موثقة ومعتمدة."
+            }
+        };
+
+        let currentLang = 'en';
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'en' ? 'ar' : 'en';
+            const htmlTag = document.getElementById('html-tag');
+            const data = translations[currentLang];
+
+            if (currentLang === 'ar') {
+                htmlTag.setAttribute('dir', 'rtl');
+                document.body.classList.add('lang-ar');
+            } else {
+                htmlTag.setAttribute('dir', 'ltr');
+                document.body.classList.remove('lang-ar');
+            }
+
+            document.getElementById('lang-btn-text').textContent = data.langBtn;
+            document.getElementById('nav-cases').textContent = data.navCases;
+            document.getElementById('nav-blueprint').textContent = data.navBlueprint;
+            document.getElementById('nav-services').textContent = data.navServices;
+            document.getElementById('nav-cta').textContent = data.navCta;
+            
+            document.getElementById('hero-tag').textContent = data.heroTag;
+            document.getElementById('hero-title').innerHTML = data.heroTitle;
+            document.getElementById('hero-desc').textContent = data.heroDesc;
+            document.getElementById('hero-btn-primary').textContent = data.heroBtnPrimary;
+            document.getElementById('hero-btn-secondary').innerHTML = data.heroBtnSecondary;
+            
+            document.getElementById('stat-views-tag').textContent = data.statViewsTag;
+            document.getElementById('stat-views-desc').textContent = data.statViewsDesc;
+            document.getElementById('stat-subs-tag').textContent = data.statSubsTag;
+            document.getElementById('stat-subs-desc').textContent = data.statSubsDesc;
+            document.getElementById('stat-videos-tag').textContent = data.statVideosTag;
+            document.getElementById('stat-videos-desc').textContent = data.statVideosDesc;
+
+            document.getElementById('proof-tag').textContent = data.proofTag;
+            document.getElementById('proof-title').textContent = data.proofTitle;
+            document.getElementById('proof-desc').textContent = data.proofDesc;
+            
+            document.getElementById('card1-format').textContent = data.card1Format;
+            document.getElementById('card1-metric').innerHTML = data.card1Metric;
+            document.getElementById('card2-format').textContent = data.card2Format;
+            document.getElementById('card2-metric').innerHTML = data.card2Metric;
+            document.getElementById('card3-title').textContent = data.card3Title;
+            document.getElementById('card3-desc').textContent = data.card3Desc;
+
+            document.querySelectorAll('.card-play-text').forEach(el => el.innerHTML = data.cardPlayText);
+            
+            document.getElementById('strat-tag').textContent = data.stratTag;
+            document.getElementById('strat-title').textContent = data.stratTitle;
+            document.getElementById('strat1-title').innerHTML = data.strat1Title;
+            document.getElementById('strat1-desc').textContent = data.strat1Desc;
+            document.getElementById('strat2-title').innerHTML = data.strat2Title;
+            document.getElementById('strat2-desc').textContent = data.strat2Desc;
+            document.getElementById('strat3-title').innerHTML = data.strat3Title;
+            document.getElementById('strat3-desc').textContent = data.strat3Desc;
+
+            document.getElementById('services-tag').textContent = data.servicesTag;
+            document.getElementById('services-title').textContent = data.servicesTitle;
+            document.getElementById('serv1-title').textContent = data.serv1Title;
+            document.getElementById('serv1-desc').textContent = data.serv1Desc;
+            document.getElementById('serv2-title').textContent = data.serv2Title;
+            document.getElementById('serv2-desc').textContent = data.serv2Desc;
+
+            document.getElementById('cta-title').textContent = data.ctaTitle;
+            document.getElementById('cta-desc').textContent = data.ctaDesc;
+            
+            document.getElementById('contact-discord-label').textContent = data.contactDiscordLabel;
+            document.getElementById('contact-instagram-label').textContent = data.contactInstagramLabel;
+            document.getElementById('copied-toast').textContent = data.copiedText;
+            
+            document.getElementById('footer-text').innerHTML = data.footerText;
+        }
+    </script>
+</body>
+</html>
